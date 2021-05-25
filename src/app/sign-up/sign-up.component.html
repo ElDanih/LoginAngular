@@ -1,0 +1,158 @@
+<div class="container h-100">
+  <div class="d-flex justify-content-center h-100">
+    <div class="form_register">
+      <h1>Sign Up</h1>
+      <div class="d-flex justify-content-center form_container">
+        <form>
+          <!-- tipo y numero documento -->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Tipo Documento*</label>
+              <select [(ngModel)]="tipoDocumento" class="form-control" name="tipoDocumento" required="required">
+                <option value="" selected>Seleccionar...</option>
+                <option value="CC">Cedula de ciudadania</option>
+                <option value="TI">Tarjeta de identidad</option>
+                <option value="PP">Pasaporte</option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Número Documento*</label>
+              <input
+                class="form-control"
+                type="text"
+                [(ngModel)]="numeroDocumento"
+                name="numeroDocumento"
+                value=""
+                id="example-number-input"
+                required="required"
+                placeholder="Número Documento"
+              />
+            </div>
+          </div>
+
+          <!-- nombres -->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Primero Nombre*</label>
+              <input
+                class="form-control"
+                type="text"
+                [(ngModel)]="primerNombre"
+                name="primerNombre"
+                placeholder="Primer Nombre"
+                required="required"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label>Segundo Nombre</label>
+              <input
+                class="form-control"
+                type="text"
+                [(ngModel)]="segundoNombre"
+                name="segundoNombre"
+                placeholder="Segundo Nombre"
+              />
+            </div>
+          </div>
+
+          <!-- apellidos -->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Primer Apellido*</label>
+              <input
+                class="form-control"
+                type="text"
+                [(ngModel)]="primerApellido"
+                name="primerApellido"
+                placeholder="Primer Apellido"
+                required="required"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label>Segundo Apellido</label>
+              <input
+                class="form-control"
+                type="text"
+                [(ngModel)]="segundoApellido"
+                name="segundoApellido"
+                placeholder="Segundo Apellido"
+              />
+            </div>
+          </div>
+
+          <!-- direccion y lugar -->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Municipio*</label>
+              <input 
+              class="form-control" 
+              type="text"
+              [(ngModel)]="municipio"
+              name="municipio" 
+              placeholder="Municipio" />
+            </div>
+            <div class="form-group col-md-6">
+              <label>Dirección</label>
+              <input 
+              class="form-control" 
+              type="text"
+              [(ngModel)]="direccion"
+              name="direccion" 
+              placeholder="Dirección" />
+            </div>
+          </div>
+
+          <!-- email y password -->
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label>E-mail*</label>
+              <input 
+              class="form-control" 
+              type="email"
+              [(ngModel)]="email"
+              name="email"
+              placeholder="E-mail" />
+            </div>            
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-12">
+                <label>Password*</label>
+                <input
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  [(ngModel)]="password"
+                  placeholder="********"
+                  required="required"
+                />
+              </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-12">
+                <label>Confirmar Password*</label>
+                <input
+                  class="form-control"
+                  type="password"
+                  name="passwordConfirm"
+                  [(ngModel)]="passwordConfirm"
+                  placeholder="********"
+                  required="required"
+                />
+              </div>                          
+          </div>
+          <div *ngIf="password != passwordConfirm">
+            Las contraseñas no coinciden
+          </div> 
+          <div class="d-flex justify-content-center mt-3 login_container">
+            <button type="submit" name="button" class="btn sign-up_btn" (click)="crearUsuario()">
+              Registrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,219 @@
+<div class="row d-flex justify-content-center" *ngIf="users" id="container">
+    <table class="table table-striped table-dark" id="miTabla">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 20px;">#</th>
+          <th scope="col" style="width: 80px;">Tipo Documento</th>
+          <th scope="col" style="width: 80px;">Numero Documento</th>
+          <th scope="col" style="width: 80px;">Nombre</th>
+          <th scope="col" style="width: 150px;">Email</th>
+          <th scope="col" style="width: 50px;">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let usuario of datos; index as i">
+          <th scope="row">{{i+1}}</th>
+          <td>{{usuario.tipodocumento}}</td>
+          <td>{{usuario.numerodocumento}}</td>
+          <td>{{usuario.primernombre}} {{usuario.primerapellido}}</td>
+          <td>{{usuario.email}}</td>
+          <td>            
+              <button class="bi bi-pencil" (click)="actualizarUsuario(usuario.numerodocumento, true)"></button>
+              <button class="bi bi-trash" (click)="eliminarUsuario(usuario.numerodocumento, i)"></button>                   
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<!-- ------------------------------------------------------- -->
+
+<div class="container h-100"  *ngIf="form === true && user">
+  <div class="d-flex justify-content-center h-100">
+    <div class="form_register">
+      <h1>Actualizar Usuario</h1>
+      <div class="d-flex justify-content-center form_container">
+        <form>
+          <!-- tipo y numero documento -->
+          <div class="form-row">
+
+            <div class="form-group col-md-3">
+              <label>Tipo Documento*</label>
+              <input
+                class="form-control"
+                type="text"
+                name="tipodocumento"
+                value={{user.tipodocumento}} 
+                placeholder="tipodocumento"
+                required="required"
+                id="tipodocumento"
+                readonly
+              />
+            </div>
+
+            <div class="form-group col-md-3">
+              <label>Número Documento*</label><br>
+              <input
+                class="form-control"
+                type="text"
+                name="numerodocumento"
+                value={{user.numerodocumento}} 
+                placeholder="Número Documento"
+                required="required"
+                id="numerodocumento"
+                readonly
+              />
+            </div>
+
+            <!-- nombres -->
+            <div class="form-group col-md-3">
+              <label>Primero Nombre*</label>
+              <input
+                class="form-control"
+                type="text"
+                [(ngModel)]="primerNombre"
+                name="primerNombre"
+                value={{user.primernombre}}
+                placeholder="Primer Nombre"
+                id="primernombre"
+                required="required"
+              />
+            </div>
+            <div class="form-group col-md-3">
+              <label>Segundo Nombre</label>
+              <input
+                class="form-control"
+                type="text"
+                [(ngModel)]="segundoNombre"
+                value={{user.segundonombre}}
+                name="segundoNombre"
+                id="segundonombre"
+                placeholder="Segundo Nombre"
+              />
+            </div>
+          </div>
+
+          <!-- apellidos -->
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label>Primer Apellido*</label>
+              <input
+                class="form-control"
+                type="text"
+                [(ngModel)]="primerApellido"
+                name="primerApellido"
+                value={{user.primerapellido}}
+                placeholder="Primer Apellido"
+                id="primerapellido"
+                required="required"
+              />
+            </div>
+            <div class="form-group col-md-3">
+              <label>Segundo Apellido</label>
+              <input
+                class="form-control"
+                type="text"
+                [(ngModel)]="segundoApellido"
+                value={{user.segundoapellido}}
+                name="segundoApellido"
+                id="segundoapellido"
+                placeholder="Segundo Apellido"
+              />
+            </div>
+
+            <!-- direccion y lugar -->    
+            <div class="form-group col-md-3">
+              <label>Municipio*</label>
+              <input 
+              class="form-control" 
+              type="text"
+              [(ngModel)]="municipio"
+              value={{user.municipio}}
+              name="municipio" 
+              id="municipio"
+              placeholder="Municipio" />
+            </div>
+            <div class="form-group col-md-3">
+              <label>Dirección</label>
+              <input 
+              class="form-control" 
+              type="text"
+              [(ngModel)]="direccion"
+              name="direccion"
+              value={{user.direccion}}
+              id="direccion"
+              placeholder="Dirección" />
+            </div>
+          </div>
+
+          <!-- email y password -->
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label>E-mail*</label>
+              <input 
+              class="form-control" 
+              type="email"
+              [(ngModel)]="email"
+              name="email"
+              value={{user.email}}
+              id="email"
+              placeholder="E-mail" />
+            </div>            
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-12">
+                <label>Password*</label>
+                <input
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  [(ngModel)]="password"
+                  value={{user.password}}
+                  placeholder="********"
+                  id="password"
+                  required="required"
+                />
+              </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-12">
+                <label>Confirmar Password*</label>
+                <input
+                  class="form-control"
+                  type="password"
+                  name="passwordConfirm"
+                  [(ngModel)]="passwordConfirm"
+                  value={{user.password}}
+                  placeholder="********"
+                  required="required"
+                />
+              </div>                          
+          </div>   
+          <div *ngIf="password != passwordConfirm">
+            <h4 style="color: crimson;">Las contraseñas no coinciden</h4>
+          </div> 
+          
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <button type="submit" name="button" class="btn sign-up_btn" (click)="ejecutarUpdate()">
+                Actualizar
+              </button>
+            </div>
+            <div class="form-group col-md-3">
+              <button type="submit" name="button" class="btn sign-up_btn"  (click)="cancelar()">
+                Cancelar
+              </button>
+            </div>                          
+          </div>
+          <div class="d-flex justify-content-center mt-3 login_container">            
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
